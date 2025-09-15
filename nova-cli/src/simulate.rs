@@ -1,5 +1,5 @@
 use anyhow::Result;
-use std::time::{ SystemTime, UNIX_EPOCH };
+use std::time::{SystemTime, UNIX_EPOCH};
 
 pub fn run(count: usize, storm: bool, json: bool) -> Result<()> {
     let mut previous = nova_core::poh::random_seed();
@@ -10,8 +10,7 @@ pub fn run(count: usize, storm: bool, json: bool) -> Result<()> {
         let ts = SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs();
 
         if json {
-            let obj =
-                serde_json::json!({
+            let obj = serde_json::json!({
                 "number": number,
                 "timestamp": ts,
                 "poh": hex::encode(&poh)

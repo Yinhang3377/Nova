@@ -9,7 +9,10 @@ fn validate_poh_hex(s: &str) -> bool {
 #[test]
 fn simulate_runs_and_prints_blocks() {
     let mut cmd = Command::cargo_bin("nova-cli").unwrap();
-    let output = cmd.args(["simulate", "--count", "3", "--json"]).output().unwrap();
+    let output = cmd
+        .args(["simulate", "--count", "3", "--json"])
+        .output()
+        .unwrap();
     assert!(output.status.success());
 
     let stdout = String::from_utf8_lossy(&output.stdout);

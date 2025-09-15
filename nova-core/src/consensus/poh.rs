@@ -1,5 +1,5 @@
 use rand::Rng;
-use sha2::{ Digest, Sha256 };
+use sha2::{Digest, Sha256};
 
 /// Very small, non-cryptographic PoH-like digest generator used for tests.
 /// Input: previous digest bytes and a counter. Output: 32-byte digest.
