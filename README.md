@@ -1,6 +1,10 @@
 # Nova
 A new beginning
 
+[![CI](https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml/badge.svg)](https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml)
+
+[Release v0.1.0](https://github.com/Yinhang3377/Nova/releases/tag/v0.1.0)
+
 ## Nova (monorepo) - initial scaffold
 
 This repository is a scaffold for the Nova blockchain project. It contains:
