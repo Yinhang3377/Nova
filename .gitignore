@@ -1,0 +1,113 @@
+# Operating System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE and Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary Files
+*.tmp
+*.temp
+.tmp/
+.temp/
+
+# Build Artifacts
+build/
+dist/
+target/
+out/
+bin/
+obj/
+
+# Dependency Directories
+node_modules/
+vendor/
+.vendor/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Log Files
+*.log
+logs/
+
+# Runtime Data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage Directory
+coverage/
+.nyc_output/
+
+# Package Files
+*.tgz
+*.tar.gz
+*.zip
+*.rar
+*.7z
+
+# Compiled Object Files
+*.o
+*.a
+*.so
+*.dll
+*.exe
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
+# Rust
+target/
+Cargo.lock
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# C/C++
+*.i*86
+*.x86_64
+*.hex
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup Files
+*.bak
+*.backup
