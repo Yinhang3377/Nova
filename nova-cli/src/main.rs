@@ -42,7 +42,13 @@ fn main() -> Result<()> {
     let cli = Cli::parse();
     match cli.command {
         Commands::Wallet { action } => {
-            println!("wallet action: {}", action);
+            // If the user asked to 'send', invoke the minimal demo API in nova-core
+            if action == "send" {
+                // demo amount is 10 (matches the original demo request)
+                nova_core::wallet::send(10);
+            } else {
+                println!("wallet action: {}", action);
+            }
         }
         Commands::Tx { to, amount } => {
             println!("tx to={:?} amount={:?}", to, amount);
