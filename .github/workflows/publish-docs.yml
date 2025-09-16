@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -41,10 +41,10 @@ jobs:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          # Prefer a personal access token (PAGES_TOKEN) when available to avoid org SSO / "Resource not
-          # accessible by integration" errors. The action expects either `personal_token` or
-          # `github_token` — pass the PAT as `personal_token` so it's used when present.
-          personal_token: ${{ secrets.PAGES_TOKEN || secrets.GITHUB_TOKEN }}
+          # If you supply a personal access token (secrets.PAGES_TOKEN) it will be used.
+          # Otherwise the action will use the github_token input (GITHUB_TOKEN). Keep them separate
+          # so we don't accidentally pass GITHUB_TOKEN into personal_token.
+          personal_token: ${{ secrets.PAGES_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           publish_branch: gh-pages
-          # keep_history is not a supported input for v3 of peaceiris/actions-gh-pages and was removed.
