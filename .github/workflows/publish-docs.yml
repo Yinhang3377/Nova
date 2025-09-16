@@ -33,7 +33,7 @@ jobs:
           if [ -f mkdocs.yml ]; then
             mkdocs build --site-dir site
           else
-            echo "mkdocs.yml not found — skipping build"
+            echo "mkdocs.yml not found 鈥?skipping build"
             mkdir -p site
             echo "<html><body><h1>Docs placeholder</h1></body></html>" > site/index.html
           fi
