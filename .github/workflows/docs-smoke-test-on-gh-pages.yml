@@ -1,0 +1,29 @@
+name: Docs smoke test (gh-pages)
+
+on:
+  push:
+    branches:
+      - gh-pages
+
+jobs:
+  smoke:
+    name: Smoke test published docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Pages URL
+        run: |
+          set -euo pipefail
+          URL="https://yinhang3377.github.io/Nova/"
+          echo "Checking $URL"
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "$URL" || echo "000")
+          if [ "$STATUS" -ne 200 ]; then
+            echo "ERROR: Pages returned HTTP $STATUS"
+            exit 1
+          fi
+          # quick content check for MkDocs / Material fingerprint
+          if ! curl -s "$URL" | grep -qi "Material for MkDocs\|mkdocs"; then
+            echo "WARNING: Page content did not contain expected MkDocs markers"
+            # Mark job as failed so maintainers see it in Actions
+            exit 1
+          fi
+          echo "Docs smoke test passed (HTTP $STATUS)"
