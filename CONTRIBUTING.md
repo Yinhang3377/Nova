@@ -63,3 +63,23 @@ Open issues in the repository and use labels like `bug`, `enhancement`, or `ques
 ## License & Code of Conduct
 
 By contributing you agree to license your contributions under the project's license (see `LICENSE`). Please follow the repository's code of conduct and be respectful.
+
+## CI requirements (important)
+
+To avoid common CI failures on fresh runners, the repository's workflows expect a minimal set of system packages to be present before building Rust crates that link native libraries.
+
+- Required packages (Ubuntu): `libssl-dev`, `pkg-config`, `build-essential`.
+	- `libssl-dev` provides OpenSSL headers/libraries used by crypto crates.
+	- `pkg-config` helps Cargo find native libs and their flags.
+	- `build-essential` installs `gcc`/`cc` and other native toolchain components required for linking.
+
+Example minimal GitHub Actions step (add inside your workflow before `cargo build`):
+
+```yaml
+- name: Install deps
+	run: sudo apt update && sudo apt install -y libssl-dev pkg-config build-essential
+```
+
+Including the above prevents linker errors like `error: linker `cc` not found` and missing OpenSSL header errors during CI runs.
+
+If you update CI or add new native deps, please include them here so future contributors won't hit the same failure modes.
