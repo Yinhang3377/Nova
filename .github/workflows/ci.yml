@@ -22,4 +22,27 @@ jobs:
       - name: Run wallet demo
         run: |
           # explicitly run the wallet send demo so nova-core prints Chinese lines
-          cargo run -p nova-cli --release --manifest-path nova-cli/Cargo.toml -- wallet send || true
+          # capture stdout/stderr to a file for later inspection and upload
+          mkdir -p build-logs
+          cargo run -p nova-cli --release --manifest-path nova-cli/Cargo.toml -- wallet send 2>&1 | tee build-logs/wallet-demo.log || true
+
+      - name: Assert demo output contains keywords
+        # Fail the job if keywords missing. If this step fails, the next upload step still runs
+        # because we don't use `continue-on-error` here; instead we intentionally run the upload in a
+        # finally-style step using the artifact upload (GitHub Actions executes steps sequentially —
+        # to ensure upload runs even if assertion fails we set `if: always()` on the upload step).
+        run: |
+          set -e
+          LOG=build-logs/wallet-demo.log
+          echo "Checking demo log for required keywords..."
+          grep -q '钱包发送' "$LOG" || (echo "Missing keyword: 钱包发送" && exit 1)
+          grep -q '桥锁住' "$LOG" || (echo "Missing keyword: 桥锁住" && exit 1)
+          grep -q '共识打包' "$LOG" || (echo "Missing keyword: 共识打包" && exit 1)
+
+      - name: Upload demo logs (always)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wallet-demo-logs
+          path: build-logs/wallet-demo.log
+          retention-days: 30
