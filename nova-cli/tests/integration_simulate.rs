@@ -9,7 +9,10 @@ fn validate_poh_hex(s: &str) -> bool {
 #[test]
 fn simulate_runs_and_prints_blocks() {
     let mut cmd = Command::cargo_bin("nova-cli").unwrap();
-    let output = cmd.args(["simulate", "--count", "3", "--json"]).output().unwrap();
+    let output = cmd
+        .args(["simulate", "--count", "3", "--json"])
+        .output()
+        .unwrap();
     assert!(output.status.success());
 
     let stdout = String::from_utf8_lossy(&output.stdout);
@@ -57,7 +60,13 @@ fn simulate_runs_and_prints_blocks() {
         line_count2 += 1;
         let v: Value = serde_json::from_str(line).expect("line should be valid json");
         // stored must be absent when backend=none
-        assert!(v.get("stored").is_none(), "stored must be absent for backend=none");
+        assert!(
+            v.get("stored").is_none(),
+            "stored must be absent for backend=none"
+        );
     }
-    assert_eq!(line_count2, 2, "should have two JSON lines for backend=none");
+    assert_eq!(
+        line_count2, 2,
+        "should have two JSON lines for backend=none"
+    );
 }

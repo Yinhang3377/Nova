@@ -1,5 +1,5 @@
 use anyhow::Result;
-use clap::{ Parser, Subcommand };
+use clap::{Parser, Subcommand};
 mod simulate;
 
 #[derive(Parser)]
@@ -50,7 +50,12 @@ fn main() -> Result<()> {
         Commands::Gov { action } => {
             println!("gov action: {}", action);
         }
-        Commands::Simulate { storm, count, json, backend } => {
+        Commands::Simulate {
+            storm,
+            count,
+            json,
+            backend,
+        } => {
             simulate::run(count, storm, json, &backend)?;
         }
     }

@@ -1,5 +1,5 @@
 use std::collections::HashMap;
-use std::sync::{ Arc, RwLock };
+use std::sync::{Arc, RwLock};
 
 /// A simple thread-safe in-memory key-value store used for testing.
 #[derive(Clone, Default)]
@@ -9,7 +9,9 @@ pub struct MemDb {
 
 impl MemDb {
     pub fn new() -> Self {
-        Self { inner: Arc::new(RwLock::new(HashMap::new())) }
+        Self {
+            inner: Arc::new(RwLock::new(HashMap::new())),
+        }
     }
 
     pub fn put(&self, key: Vec<u8>, value: Vec<u8>) {
@@ -82,13 +84,11 @@ mod tests {
 
         for i in 0..8 {
             let dbc = db.clone();
-            handles.push(
-                thread::spawn(move || {
-                    let k = format!("k{}", i).into_bytes();
-                    let v = format!("v{}", i).into_bytes();
-                    dbc.put(k, v);
-                })
-            );
+            handles.push(thread::spawn(move || {
+                let k = format!("k{}", i).into_bytes();
+                let v = format!("v{}", i).into_bytes();
+                dbc.put(k, v);
+            }));
         }
 
         for h in handles {

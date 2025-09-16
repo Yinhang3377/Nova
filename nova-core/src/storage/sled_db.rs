@@ -13,7 +13,9 @@ pub struct SledDbStub {
 
 impl SledDbStub {
     pub fn new() -> Self {
-        Self { inner: MemDb::new() }
+        Self {
+            inner: MemDb::new(),
+        }
     }
 }
 

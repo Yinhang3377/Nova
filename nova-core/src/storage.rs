@@ -1,10 +1,10 @@
 //! storage skeleton
 
+pub mod factory;
+pub mod mem_db;
 pub mod rocks_db;
 pub mod sled_db;
 pub mod state_shards;
-pub mod mem_db;
-pub mod factory;
 
 /// Generic storage trait for simple key/value backends used in tests and later substitution.
 /// Keys and values are byte vectors to keep the interface low-level and flexible.

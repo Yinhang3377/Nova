@@ -15,7 +15,9 @@ pub struct RocksDbStub {
 
 impl RocksDbStub {
     pub fn new() -> Self {
-        Self { inner: MemDb::new() }
+        Self {
+            inner: MemDb::new(),
+        }
     }
 }
 
