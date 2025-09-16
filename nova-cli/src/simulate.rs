@@ -55,17 +55,15 @@ pub fn run(count: usize, storm: bool, json: bool, backend: &str) -> Result<()> {
                     stored
                 );
             }
+        } else if json {
+            let obj = serde_json::json!({
+                "number": number,
+                "timestamp": ts,
+                "poh": hex::encode(&poh)
+            });
+            println!("{}", obj);
         } else {
-            if json {
-                let obj = serde_json::json!({
-                    "number": number,
-                    "timestamp": ts,
-                    "poh": hex::encode(&poh)
-                });
-                println!("{}", obj);
-            } else {
-                println!("block {} ts={} poh={}", number, ts, hex::encode(&poh));
-            }
+            println!("block {} ts={} poh={}", number, ts, hex::encode(&poh));
         }
 
         previous = poh;
