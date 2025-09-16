@@ -29,6 +29,12 @@ enum Commands {
         count: usize,
         #[arg(long, action = clap::ArgAction::SetTrue)]
         json: bool,
+        /// storage backend to use. Valid values: "mem" (default) or "none".
+        ///
+        /// "mem" stores generated blocks in an in-memory backend (used for testing).
+        /// "none" disables persistence (backward-compatible behavior).
+        #[arg(long, default_value = "mem", value_parser = ["mem", "none"])]
+        backend: String,
     },
 }
 
@@ -44,8 +50,13 @@ fn main() -> Result<()> {
         Commands::Gov { action } => {
             println!("gov action: {}", action);
         }
-        Commands::Simulate { storm, count, json } => {
-            simulate::run(count, storm, json)?;
+        Commands::Simulate {
+            storm,
+            count,
+            json,
+            backend,
+        } => {
+            simulate::run(count, storm, json, &backend)?;
         }
     }
     Ok(())

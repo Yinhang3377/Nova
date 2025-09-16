@@ -1,0 +1,53 @@
+name: Set GitHub Pages to gh-pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to publish from'
+        required: false
+        default: 'gh-pages'
+      path:
+        description: 'Folder to publish (root or docs)'
+        required: false
+        default: '/'
+
+permissions:
+  contents: write
+
+jobs:
+  set-pages:
+    runs-on: ubuntu-latest
+    name: Set Pages Source
+    steps:
+      - name: Check out repository (for context)
+        uses: actions/checkout@v4
+
+      - name: Set GitHub Pages source to branch
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const branch = core.getInput('branch') || 'gh-pages'
+            const path = core.getInput('path') || '/'
+            // Set pages configuration to use branch and path
+            const owner = context.repo.owner
+            const repo = context.repo.repo
+            core.info(`Setting Pages source for ${owner}/${repo} -> branch=${branch} path=${path}`)
+            const resp = await github.rest.repos.updatePagesSite({
+              owner,
+              repo,
+              source: {
+                branch,
+                path,
+              },
+            })
+            core.info('Pages update response status: ' + resp.status)
+            const current = await github.rest.repos.getPages({ owner, repo })
+            core.info('Current Pages config: ' + JSON.stringify(current.data, null, 2))
+            return { updated: true }
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Print info
+        run: |
+          echo "Pages source updated. Check repository Settings → Pages to confirm."

@@ -36,6 +36,37 @@ fn simulate_runs_and_prints_blocks() {
         assert!(poh.is_string());
         let poh_s = poh.as_str().unwrap();
         assert!(validate_poh_hex(poh_s), "poh must be 64 hex chars");
+        // stored (should be present and true when using the default mem backend)
+        let stored = v.get("stored").expect("stored field");
+        assert!(stored.is_boolean());
+        assert!(stored.as_bool().unwrap());
     }
     assert_eq!(line_count, 3, "should have three JSON lines");
+
+    // Second: explicit `--backend none` - stored should NOT be present
+    let mut cmd2 = Command::cargo_bin("nova-cli").unwrap();
+    let output2 = cmd2
+        .args(["simulate", "--count", "2", "--json", "--backend", "none"])
+        .output()
+        .unwrap();
+    assert!(output2.status.success());
+
+    let stdout2 = String::from_utf8_lossy(&output2.stdout);
+    let mut line_count2 = 0usize;
+    for line in stdout2.lines() {
+        if line.trim().is_empty() {
+            continue;
+        }
+        line_count2 += 1;
+        let v: Value = serde_json::from_str(line).expect("line should be valid json");
+        // stored must be absent when backend=none
+        assert!(
+            v.get("stored").is_none(),
+            "stored must be absent for backend=none"
+        );
+    }
+    assert_eq!(
+        line_count2, 2,
+        "should have two JSON lines for backend=none"
+    );
 }
