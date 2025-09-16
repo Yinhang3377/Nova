@@ -1,13 +1,4 @@
-# Nova
-
-This repository contains the Nova blockchain scaffold. The full documentation site is published via GitHub Pages and the source lives under `docs/`.
-
-Quick links:
-
-- Docs site: https://Yinhang3377.github.io/Nova/  (after Pages is configured)
-- Local docs: `mkdocs serve` (see `docs/`)
-
-For developer and API reference see the documentation pages under `docs/` (Contributing, Storage, Architecture).
+````markdown
 # Nova
 A new beginning
 
@@ -26,7 +17,7 @@ This repository is a scaffold for the Nova blockchain project. It contains:
 
 This scaffold is intentionally minimal and designed to be expanded per the Nova project outline.
 
-See developer notes in [docs/STORAGE.md](docs/STORAGE.md) for details on storage backends and the test-friendly factory.
+See developer notes in [docs/STORAGE.md](STORAGE.md) for details on storage backends and the test-friendly factory.
 
 ## `nova-cli simulate` backend option
 
@@ -44,3 +35,5 @@ nova-cli simulate --count 5 --json
 # Run 2 simulated blocks without persisting
 nova-cli simulate --count 2 --json --backend none
 ```
+
+````
