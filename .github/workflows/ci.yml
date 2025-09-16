@@ -13,3 +13,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - run: sudo apt-get update && sudo apt-get install -y libssl-dev pkg-config
+      - name: Build workspace
+        run: cargo build --workspace --release
+      - name: Run demo binary
+        run: |
+          # run the CLI demo which should invoke nova_core::wallet::send
+          cargo run -p nova-cli --release --manifest-path nova-cli/Cargo.toml -- simulate --count 1 || true
