@@ -19,3 +19,7 @@ jobs:
         run: |
           # run the CLI demo which should invoke nova_core::wallet::send
           cargo run -p nova-cli --release --manifest-path nova-cli/Cargo.toml -- simulate --count 1 || true
+      - name: Run wallet demo
+        run: |
+          # explicitly run the wallet send demo so nova-core prints Chinese lines
+          cargo run -p nova-cli --release --manifest-path nova-cli/Cargo.toml -- wallet send || true
