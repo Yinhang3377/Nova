@@ -61,6 +61,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#nova" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -241,6 +246,8 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
@@ -385,6 +392,8 @@
   
   
   
+    
+  
   
 </nav>
                   </div>
@@ -403,46 +412,36 @@
   
 
 
-  <h1>README</h1>
-
-<pre><code class="language-markdown"># Nova
-A new beginning
-
-[![CI](https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml/badge.svg)](https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml)
-
-[Release v0.1.0](https://github.com/Yinhang3377/Nova/releases/tag/v0.1.0)
-
-## Nova (monorepo) - initial scaffold
-
-This repository is a scaffold for the Nova blockchain project. It contains:
-
-- `nova-core`: Core primitives and runtime components
-- `nova-cli`: Command-line interface for wallets and node control
-- `docs`: Design documents and roadmap
-- `test-utils`: Test harness and simulators
-
-This scaffold is intentionally minimal and designed to be expanded per the Nova project outline.
-
-See developer notes in [docs/STORAGE.md](STORAGE.md) for details on storage backends and the test-friendly factory.
-
-## `nova-cli simulate` backend option
-
-The `simulate` command supports a `--backend` flag to control persistence of generated blocks:
-
-- `--backend mem` (default): store generated blocks in an in-memory storage backend (useful for tests and local simulations).
-- `--backend none`: do not persist generated blocks (backward-compatible output-only behavior).
-
-Examples:
-
-```bash
-# Run 5 simulated blocks and persist them in memory (default)
+<p>````markdown</p>
+<h1 id="nova">Nova</h1>
+<h1 id="nova_1">Nova</h1>
+<p>A new beginning</p>
+<p><a href="https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml/badge.svg" /></a></p>
+<p><a href="https://github.com/Yinhang3377/Nova/releases/tag/v0.1.0">Release v0.1.0</a></p>
+<h2 id="nova-monorepo-initial-scaffold">Nova (monorepo) - initial scaffold</h2>
+<p>This repository is a scaffold for the Nova blockchain project. It contains:</p>
+<ul>
+<li><code>nova-core</code>: Core primitives and runtime components</li>
+<li><code>nova-cli</code>: Command-line interface for wallets and node control</li>
+<li><code>docs</code>: Design documents and roadmap</li>
+<li><code>test-utils</code>: Test harness and simulators</li>
+</ul>
+<p>This scaffold is intentionally minimal and designed to be expanded per the Nova project outline.</p>
+<p>See developer notes in <a href="../STORAGE/">docs/STORAGE.md</a> for details on storage backends and the test-friendly factory.</p>
+<h2 id="nova-cli-simulate-backend-option"><code>nova-cli simulate</code> backend option</h2>
+<p>The <code>simulate</code> command supports a <code>--backend</code> flag to control persistence of generated blocks:</p>
+<ul>
+<li><code>--backend mem</code> (default): store generated blocks in an in-memory storage backend (useful for tests and local simulations).</li>
+<li><code>--backend none</code>: do not persist generated blocks (backward-compatible output-only behavior).</li>
+</ul>
+<p>Examples:</p>
+<pre><code class="language-bash"># Run 5 simulated blocks and persist them in memory (default)
 nova-cli simulate --count 5 --json
 
 # Run 2 simulated blocks without persisting
 nova-cli simulate --count 2 --json --backend none
-```
-
 </code></pre>
+<p>```</p>
 
 
 

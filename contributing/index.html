@@ -329,33 +329,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#local-development-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Local development tips
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reporting-issues-and-feature-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reporting issues and feature requests
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license-code-of-conduct" class="md-nav__link">
-    <span class="md-ellipsis">
-      License &amp; Code of Conduct
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -496,33 +469,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#local-development-tips" class="md-nav__link">
-    <span class="md-ellipsis">
-      Local development tips
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#reporting-issues-and-feature-requests" class="md-nav__link">
-    <span class="md-ellipsis">
-      Reporting issues and feature requests
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#license-code-of-conduct" class="md-nav__link">
-    <span class="md-ellipsis">
-      License &amp; Code of Conduct
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -578,9 +524,8 @@ cargo test -p nova-cli
 <li><code>cargo fmt --all -- --check</code> (formatting)</li>
 <li><code>cargo clippy --all -- -D warnings</code> (lints as errors)</li>
 <li><code>cargo test --workspace --no-fail-fast</code> (unit and integration tests)</li>
-<li>A runtime smoke check that executes <code>nova-cli simulate --count 1 --json</code></li>
 </ul>
-<p>If any of these fail, CI will block merge.</p>
+<h1 id="a-runtime-smoke-check-that-executes-nova-cli-simulate-count-1-json">A runtime smoke check that executes <code>nova-cli simulate --count 1 --json</code></h1>
 <h2 id="local-development-tips">Local development tips</h2>
 <ul>
 <li>Use the repository's <code>rust-toolchain.toml</code> so your local toolchain matches CI:</li>

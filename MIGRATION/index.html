@@ -487,17 +487,7 @@
 <h2 id="docs-migration-pr-summary">Docs migration PR summary</h2>
 <p>This change moves long-form documentation into the MkDocs site under <code>docs/</code> and updates navigation so the site can be published.</p>
 <p>Files moved/added:</p>
-<ul>
-<li><code>docs/readme.md</code> — moved from root <code>README.md</code> (long-form content)</li>
-<li><code>docs/contributing.md</code> — moved from <code>CONTRIBUTING.md</code></li>
-<li><code>docs/index.md</code> — existing site index</li>
-</ul>
 <p>What changed in this PR:</p>
-<ul>
-<li>Root <code>README.md</code> replaced with a short landing that points to the site.</li>
-<li><code>mkdocs.yml</code> updated to include <code>readme.md</code> and <code>contributing.md</code> in nav.</li>
-<li>CI workflow for docs is already present (<code>.github/workflows/docs.yml</code>) and will build &amp; deploy on push to <code>main</code> or on tags.</li>
-</ul>
 <p>Validation steps for reviewers:</p>
 <ol>
 <li>Review moved pages for correct links and relative paths.</li>
@@ -509,15 +499,7 @@
 <pre><code class="language-powershell">pip install mkdocs mkdocs-material
 mkdocs serve
 </code></pre>
-<hr />
 <h2 id="admin-checklist-action-items-before-or-after-merge">Admin checklist (action items before or after merge)</h2>
-<ul>
-<li>[ ] Go to Repository → Settings → Pages and set Source to <code>gh-pages</code> branch (or verify the branch after first deployment).</li>
-<li>[ ] If using a custom domain, add DNS records and configure the custom domain in Pages settings.</li>
-<li>[ ] Verify <code>GITHUB_TOKEN</code> has repository write permissions in repository settings if your organization policy restricts Actions permissions.</li>
-<li>[ ] After merging, check Actions → docs: build &amp; deploy run logs to confirm <code>site/</code> was pushed to <code>gh-pages</code>.</li>
-<li>[ ] Visit https://Yinhang3377.github.io/Nova/ to validate content.</li>
-</ul>
 
 
 
