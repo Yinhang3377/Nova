@@ -16,7 +16,7 @@ jobs:
         uses: dtolnay/rust-toolchain@stable
 
       - name: Install deps
-        run: sudo apt update && sudo apt install -y libssl-dev pkg-config
+        run: sudo apt update && sudo apt install -y libssl-dev pkg-config build-essential
 
       - name: Build
         run: cargo build --verbose
