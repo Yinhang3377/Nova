@@ -5,6 +5,7 @@ nav:
   - Contributing: contributing.md
   - Storage: STORAGE.md
   - Architecture: ARCHITECTURE.md
+  - GH-Pages: GH-PAGES-README.md
 theme:
   name: material
 repo_url: https://github.com/Yinhang3377/Nova

@@ -7,10 +7,14 @@ Quick links:
 - Docs site: https://Yinhang3377.github.io/Nova/  (after Pages is configured)
 - Local docs: `mkdocs serve` (see `docs/`)
 
+<!-- Docs badge placeholder (becomes active after Pages is enabled) -->
+<!-- [![Docs](https://github.com/Yinhang3377/Nova/actions/workflows/docs.yml/badge.svg)](https://yinhang3377.github.io/Nova/) -->
+
 For developer and API reference see the documentation pages under `docs/` (Contributing, Storage, Architecture).
 
 <!-- Pages badge -->
-[![Docs](https://github.com/Yinhang3377/Nova/actions/workflows/docs.yml/badge.svg)](https://github.com/Yinhang3377/Nova/actions/workflows/docs.yml)
+[![Docs build status](https://github.com/Yinhang3377/Nova/actions/workflows/publish-docs.yml/badge.svg)](https://github.com/Yinhang3377/Nova/actions/workflows/publish-docs.yml)
+[![Docs site](https://img.shields.io/website-up-down-green-red/https/yinhang3377.github.io/Nova/)](https://yinhang3377.github.io/Nova/)
 # Nova
 A new beginning
 
