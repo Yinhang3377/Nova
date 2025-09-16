@@ -41,8 +41,10 @@ jobs:
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.PAGES_TOKEN || secrets.GITHUB_TOKEN }}
+          # Prefer a personal access token (PAGES_TOKEN) when available to avoid org SSO / "Resource not
+          # accessible by integration" errors. The action expects either `personal_token` or
+          # `github_token` — pass the PAT as `personal_token` so it's used when present.
+          personal_token: ${{ secrets.PAGES_TOKEN || secrets.GITHUB_TOKEN }}
           publish_dir: ./site
           publish_branch: gh-pages
-          # keep_history true preserves history on gh-pages branch
-          keep_history: true
+          # keep_history is not a supported input for v3 of peaceiris/actions-gh-pages and was removed.
