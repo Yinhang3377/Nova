@@ -37,8 +37,17 @@ jobs:
           echo "Setting Pages source for $owner/$repo -> branch=$branch path=$path"
 
           # Call the Pages REST API and capture HTTP status and body for debugging
+          # Prefer a user-provided PAT stored in the repository secret PAGES_TOKEN (recommended for orgs/SAML/SSO). Fallback to GITHUB_TOKEN.
+          if [ -n "${PAGES_TOKEN}" ]; then
+            auth_header="Authorization: Bearer ${PAGES_TOKEN}"
+            echo "Using PAGES_TOKEN secret for API auth"
+          else
+            auth_header="Authorization: Bearer ${GITHUB_TOKEN}"
+            echo "Using GITHUB_TOKEN for API auth (may be blocked by org SSO/restrictions)"
+          fi
+
           resp=$(curl -sS -w "\n%{http_code}" -X PUT \
-            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "$auth_header" \
             -H "Accept: application/vnd.github.v3+json" \
             https://api.github.com/repos/$owner/$repo/pages \
             -d "{ \"source\": { \"branch\": \"$branch\", \"path\": \"$path\" } }")
@@ -57,6 +66,8 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # Optionally provide a personal access token with 'repo' and 'workflow' or 'admin:repo_hook' scope
+          PAGES_TOKEN: ${{ secrets.PAGES_TOKEN }}
 
       - name: Print info
         run: |
