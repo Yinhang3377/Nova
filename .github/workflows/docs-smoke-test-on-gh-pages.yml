@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - gh-pages
+  # Allow manual runs for debugging and validation
+  workflow_dispatch:
 
 permissions:
   contents: read
