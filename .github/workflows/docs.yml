@@ -5,6 +5,13 @@ on:
     branches: [ main ]
     tags: ['v*']
 
+name: docs: build & deploy
+
+on:
+  push:
+    branches: [ main ]
+    tags: ['v*']
+
 permissions:
   contents: write
 
