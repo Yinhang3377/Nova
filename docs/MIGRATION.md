@@ -4,15 +4,9 @@ This change moves long-form documentation into the MkDocs site under `docs/` and
 
 Files moved/added:
 
-- `docs/readme.md` — moved from root `README.md` (long-form content)
-- `docs/contributing.md` — moved from `CONTRIBUTING.md`
-- `docs/index.md` — existing site index
 
 What changed in this PR:
 
-- Root `README.md` replaced with a short landing that points to the site.
-- `mkdocs.yml` updated to include `readme.md` and `contributing.md` in nav.
-- CI workflow for docs is already present (`.github/workflows/docs.yml`) and will build & deploy on push to `main` or on tags.
 
 Validation steps for reviewers:
 
@@ -29,12 +23,6 @@ pip install mkdocs mkdocs-material
 mkdocs serve
 ```
 
----
 
 ## Admin checklist (action items before or after merge)
 
-- [ ] Go to Repository → Settings → Pages and set Source to `gh-pages` branch (or verify the branch after first deployment).
-- [ ] If using a custom domain, add DNS records and configure the custom domain in Pages settings.
-- [ ] Verify `GITHUB_TOKEN` has repository write permissions in repository settings if your organization policy restricts Actions permissions.
-- [ ] After merging, check Actions → docs: build & deploy run logs to confirm `site/` was pushed to `gh-pages`.
-- [ ] Visit https://Yinhang3377.github.io/Nova/ to validate content.

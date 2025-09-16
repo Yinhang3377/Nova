@@ -1,5 +1,7 @@
 ````markdown
 # Nova
+# Nova
+
 A new beginning
 
 [![CI](https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml/badge.svg)](https://github.com/Yinhang3377/Nova/actions/workflows/ci.yml)
@@ -35,5 +37,4 @@ nova-cli simulate --count 5 --json
 # Run 2 simulated blocks without persisting
 nova-cli simulate --count 2 --json --backend none
 ```
-
-````
+```

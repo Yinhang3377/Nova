@@ -36,9 +36,7 @@ The repository uses GitHub Actions to enforce:
 - `cargo fmt --all -- --check` (formatting)
 - `cargo clippy --all -- -D warnings` (lints as errors)
 - `cargo test --workspace --no-fail-fast` (unit and integration tests)
-- A runtime smoke check that executes `nova-cli simulate --count 1 --json`
-
-If any of these fail, CI will block merge.
+# A runtime smoke check that executes `nova-cli simulate --count 1 --json`
 
 ## Local development tips
 
