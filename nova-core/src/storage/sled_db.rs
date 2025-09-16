@@ -6,16 +6,14 @@
 use crate::storage::mem_db::MemDb;
 use crate::storage::Storage;
 
-#[derive(Clone)]
+#[derive(Clone, Default)]
 pub struct SledDbStub {
     inner: MemDb,
 }
 
 impl SledDbStub {
     pub fn new() -> Self {
-        Self {
-            inner: MemDb::new(),
-        }
+        Self { inner: MemDb::new() }
     }
 }
 

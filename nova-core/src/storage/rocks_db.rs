@@ -8,16 +8,14 @@
 use crate::storage::mem_db::MemDb;
 use crate::storage::Storage;
 
-#[derive(Clone)]
+#[derive(Clone, Default)]
 pub struct RocksDbStub {
     inner: MemDb,
 }
 
 impl RocksDbStub {
     pub fn new() -> Self {
-        Self {
-            inner: MemDb::new(),
-        }
+        Self { inner: MemDb::new() }
     }
 }
 
