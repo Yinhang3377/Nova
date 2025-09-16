@@ -28,3 +28,13 @@ Install mkdocs & material theme and run:
 pip install mkdocs mkdocs-material
 mkdocs serve
 ```
+
+---
+
+## Admin checklist (action items before or after merge)
+
+- [ ] Go to Repository → Settings → Pages and set Source to `gh-pages` branch (or verify the branch after first deployment).
+- [ ] If using a custom domain, add DNS records and configure the custom domain in Pages settings.
+- [ ] Verify `GITHUB_TOKEN` has repository write permissions in repository settings if your organization policy restricts Actions permissions.
+- [ ] After merging, check Actions → docs: build & deploy run logs to confirm `site/` was pushed to `gh-pages`.
+- [ ] Visit https://Yinhang3377.github.io/Nova/ to validate content.

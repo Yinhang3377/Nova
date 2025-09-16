@@ -8,6 +8,9 @@ Quick links:
 - Local docs: `mkdocs serve` (see `docs/`)
 
 For developer and API reference see the documentation pages under `docs/` (Contributing, Storage, Architecture).
+
+<!-- Pages badge -->
+[![Docs](https://github.com/Yinhang3377/Nova/actions/workflows/docs.yml/badge.svg)](https://github.com/Yinhang3377/Nova/actions/workflows/docs.yml)
 # Nova
 A new beginning
 
