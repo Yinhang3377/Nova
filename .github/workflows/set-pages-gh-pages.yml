@@ -23,28 +23,37 @@ jobs:
       - name: Check out repository (for context)
         uses: actions/checkout@v4
 
-      - name: Set GitHub Pages source to branch
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const branch = core.getInput('branch') || 'gh-pages'
-            const path = core.getInput('path') || '/'
-            // Set pages configuration to use branch and path
-            const owner = context.repo.owner
-            const repo = context.repo.repo
-            core.info(`Setting Pages source for ${owner}/${repo} -> branch=${branch} path=${path}`)
-            const resp = await github.rest.repos.updatePagesSite({
-              owner,
-              repo,
-              source: {
-                branch,
-                path,
-              },
-            })
-            core.info('Pages update response status: ' + resp.status)
-            const current = await github.rest.repos.getPages({ owner, repo })
-            core.info('Current Pages config: ' + JSON.stringify(current.data, null, 2))
-            return { updated: true }
+      - name: Set GitHub Pages source to branch (REST API)
+        run: |
+          # Determine inputs (workflow_dispatch inputs are available under github.event.inputs)
+          branch="${{ github.event.inputs.branch }}"
+          path="${{ github.event.inputs.path }}"
+          if [ -z "$branch" ]; then branch="gh-pages"; fi
+          if [ -z "$path" ]; then path="/"; fi
+          owner_repo="${GITHUB_REPOSITORY}"
+          owner="${owner_repo%%/*}"
+          repo="${owner_repo##*/}"
+          echo "Setting Pages source for $owner/$repo -> branch=$branch path=$path"
+
+          # Call the Pages REST API and capture HTTP status and body for debugging
+          resp=$(curl -sS -w "\n%{http_code}" -X PUT \
+            -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/$owner/$repo/pages \
+            -d "{ \"source\": { \"branch\": \"$branch\", \"path\": \"$path\" } }")
+
+          body=$(echo "$resp" | sed '$d')
+          code=$(echo "$resp" | tail -n1)
+          echo "HTTP status: $code"
+          echo "Response body:\n$body"
+
+          if [ "$code" -ge 200 ] && [ "$code" -lt 300 ]; then
+            echo "Pages updated successfully"
+            exit 0
+          else
+            echo "Pages API returned $code"
+            exit 1
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
